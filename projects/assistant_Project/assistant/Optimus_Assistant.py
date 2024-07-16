@@ -222,10 +222,7 @@ class Main(QMainWindow):
             elif 'send message'.lower() in self.command.lower():
                 print("received")
                 self.speak('sending message ...')
-
-                from twilio.rest import Client
-
-              
+          
                 client = Client(account_sid, auth_token)
 
                 message = client.messages.create(
