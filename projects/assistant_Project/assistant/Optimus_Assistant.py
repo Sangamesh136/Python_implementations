@@ -213,8 +213,8 @@ class Main(QMainWindow):
                 call = client.calls.create(
                     url="http://demo.twilio.com/docs/voice.xml",
                     twiml='<Response><say>i am optimus prime the king of transforms</say></Resonse>',
-                    to="+917975070214",
-                    from_="+13129574983"
+                    to=os.getenv('To'),
+                    from_=os.getenv('FROM')
                 )
                 print(call.sid)
                 sys.exit()
@@ -229,9 +229,9 @@ class Main(QMainWindow):
                 client = Client(account_sid, auth_token)
 
                 message = client.messages.create(
-                    from_='whatsapp:+14155238886',
+                    from_=os.getenv('WHATSAPP_FROM'),
                     body='THIS IS OPTIMUS PRIME',
-                    to='whatsapp:+919035531011'
+                    to=os.getenv("WHATSAPP_TO")
                 )
 
                 print(message.sid)
@@ -254,8 +254,9 @@ class Main(QMainWindow):
 
 def get_weather(city):
     print("Received")
-    base_url = "https://api.openweathermap.org/data/2.5/weather?q="
-    response = requests.get(base_url + city + "&appid=" + 'd1d10dd217f80c0077dda159cc374372')
+    base_url = os.getenv('WEATHER_URL')
+    weather_api = os.getenv("WEATHER_API")
+    response = requests.get(base_url + city + "&appid=" + weather_api)
     weather_data = response.json()
     if response.status_code == 200:
         main_weather = weather_data['weather'][0]['description']
