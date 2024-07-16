@@ -225,8 +225,8 @@ class Main(QMainWindow):
 
                 from twilio.rest import Client
 
-                account_sid = 'AC00030600def55972c59f7300b98a0021'
-                auth_token = '875403b8464dc5bf2de5f84f0a08cde0'
+                # account_sid = 'AC00030600def55972c59f7300b98a0021'
+                # auth_token = '875403b8464dc5bf2de5f84f0a08cde0'
                 client = Client(account_sid, auth_token)
 
                 message = client.messages.create(
