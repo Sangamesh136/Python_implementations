@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import QtGui
 from PyQt5.uic import loadUiType
 from threading import Thread
+from dotenv import load_dotenv
 import speech_recognition as sr
 import os
 import pyttsx3
@@ -204,8 +205,9 @@ class Main(QMainWindow):
 
                 from twilio.rest import Client
 
-                account_sid = "AC2dec79537f7670dbb88850a65986aa95"
-                auth_token = "c16fcb078e38a67a472b65359253dcc7"
+
+                account_sid = os.getenv('ACC_SID')
+                auth_token = os.getenv('AUTH_TOKEN')
                 client = Client(account_sid, auth_token)
 
                 call = client.calls.create(
